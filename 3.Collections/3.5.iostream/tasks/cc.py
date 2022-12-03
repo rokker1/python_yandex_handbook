@@ -1,4 +1,15 @@
 from sys import stdin
 from statistics import mean
 
-lines = [l.rstrip('\n') for l in stdin.readlines()]
+lines = []
+for line in stdin:
+    if line.strip(" ").startswith("#"):
+        continue
+    comment_pos = line.find("#")
+    if comment_pos != -1:
+        lines.append(line[:comment_pos].rstrip("\n"))
+    else:
+        lines.append(line.rstrip("\n"))
+
+for line in lines:
+    print(line)
