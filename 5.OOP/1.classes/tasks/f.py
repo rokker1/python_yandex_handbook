@@ -7,12 +7,10 @@ class Rectangle:
         self.y = abs(self.point1[1] - self.point2[1])
 
     def perimeter(self):
-        return round(2 * (abs(self.point1[0] - self.point2[0]) + 
-                          abs(self.point1[1] - self.point2[1])), 2)
+        return round(2 * (self.x + self.y), 2)
 
     def area(self):
-        return round(abs((self.point1[0] - self.point2[0]) * 
-                         (self.point1[1] - self.point2[1])), 2)
+        return round(self.x * self.y, 2)
 
     def get_pos(self):
         return round(self.point1[0], 2), round(self.point1[1], 2)
@@ -28,7 +26,6 @@ class Rectangle:
         self.x = width
         self.y = height
         self.point2 = (self.point1[0] + width, self.point1[1] + height)
-
 
 # rect = Rectangle((3.2, -4.3), (7.52, 3.14))
 # print(rect.get_pos(), rect.get_size())
