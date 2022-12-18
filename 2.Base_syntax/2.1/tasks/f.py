@@ -1,4 +1,6 @@
 good = input()
+length = len(good)
+print(good[5])
 cost = int(input())
 weight = int(input())
 price = cost * weight
