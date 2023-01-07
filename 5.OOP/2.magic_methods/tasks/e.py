@@ -1,12 +1,7 @@
-class Fraction:
+from math import gcd
 
-    def __gcd(self, a, b):
-        while a != 0 and b != 0:
-            if a > b:
-                a = a % b
-            else:
-                b = b % a
-        return a + b
+
+class Fraction:
     
     def __init__(self, arga=0, argb=None):
         if argb is not None:
@@ -37,20 +32,21 @@ class Fraction:
         self.__normalize()
 
     def __normalize(self):
-        if self.n >= 0 and self.d < 0 or\
-            self.n < 0 and self.d > 0:
+        if self.n > 0 and self.d < 0 or\
+           self.n < 0 and self.d > 0:
             segn = -1
         else:
             segn = 1
+        
         self.n, self.d = abs(self.n), abs(self.d)
-        gcd_ = self.__gcd(self.n, self.d)
-        self.n = self.n // gcd_ * segn
+
+        gcd_ = gcd(self.n, self.d)
+
+        self.n = ((self.n // gcd_) * segn)
         self.d //= gcd_
 
-
     def __neg__(self):
-        copy_fraction = eval(self.__repr__())
-        copy_fraction.n *= -1
+        copy_fraction = Fraction(-self.n, self.d)
         return copy_fraction
         
 a = Fraction(1, 3)
@@ -59,3 +55,14 @@ c = Fraction(-3, 9)
 d = Fraction(4, -12)
 print(a, b, c, d)
 print(*map(repr, (a, b, c, d)))
+
+
+a = Fraction('-1/2')
+b = -a
+print(a, b, a is b)
+b.numerator(-b.numerator())
+print(b)
+
+h = Fraction("0/-55")
+k = -h
+print(h, k)
