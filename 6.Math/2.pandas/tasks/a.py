@@ -8,7 +8,7 @@ def length_stats(text):
     for w in words:
         word = "".join([c for c in w if c.isalpha()])
         if word:
-            prepared_words.append()
+            prepared_words.append(word)
     return pd.Series({word: len(word) for word in sorted(prepared_words)}, dtype="int64")
 
 print(length_stats("44 55 666"))
