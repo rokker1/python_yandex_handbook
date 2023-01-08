@@ -6,10 +6,12 @@ def length_stats(text):
     words = [w for w in text.lower().split()]
     prepared_words = []
     for w in words:
-        prepared_words.append("".join([c for c in w if c.isalpha()]))
-    return pd.Series({word: len(word) for word in sorted(prepared_words)})
+        word = "".join([c for c in w if c.isalpha()])
+        if word:
+            prepared_words.append()
+    return pd.Series({word: len(word) for word in sorted(prepared_words)}, dtype="int64")
 
-
+print(length_stats("44 55 666"))
 print(length_stats('Мама мыла раму'))
-print(length_stats('Лес, опу3шка, 1странный 2домик. Лес, 32опушк23а и зве453рушка.'))
-
+print(length_stats('Лес, опушка, странный домик. Лес, опушка и зверушка.'))
+print(length_stats('Ёлка, елка, ёлка ЕЛКА'))
